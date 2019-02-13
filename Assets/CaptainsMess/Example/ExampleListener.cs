@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using DetectionApp;
 
 public class ExampleListener : CaptainsMessListener
 {
@@ -21,7 +22,8 @@ public class ExampleListener : CaptainsMessListener
 	public GameObject gameSessionPrefab;
 	public ExampleGameSession gameSession;
 
-	public void Start()
+
+    public void Start()
 	{
 		networkState = NetworkState.Offline;
 
@@ -83,14 +85,16 @@ public class ExampleListener : CaptainsMessListener
 	public override void OnStartGame(List<CaptainsMessPlayer> aStartingPlayers)
 	{
 		Debug.Log("GO!");
-		gameSession.OnStartGame(aStartingPlayers);
-	}
+        gameSession.OnStartGame(aStartingPlayers);
+
+    }
 
 	public override void OnAbortGame()
 	{
 		Debug.Log("ABORT!");
 		gameSession.OnAbortGame();
-	}
+
+    }
 
 	void Update()
 	{

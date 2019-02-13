@@ -17,7 +17,8 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 	public Text rollResultField;
 	public Text totalPointsField;
 
-	[SyncVar]
+
+    [SyncVar]
 	public Color myColour;
 
 	// Simple game states for a dice-rolling game
@@ -40,7 +41,9 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 	private ARLocationSync _arLocationSync;
 	private ExampleARSessionManager _exampleARSessionManager;
 
-	public override void OnStartLocalPlayer()
+
+
+    public override void OnStartLocalPlayer()
 	{
 		base.OnStartLocalPlayer();
 
@@ -48,13 +51,13 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 		_exampleARSessionManager = FindObjectOfType<ExampleARSessionManager>();
 
 
-		// Send custom player info
-		// This is an example of sending additional information to the server that might be needed in the lobby (eg. colour, player image, personal settings, etc.)
+        // Send custom player info
+        // This is an example of sending additional information to the server that might be needed in the lobby (eg. colour, player image, personal settings, etc.)
 
-		myColour = UnityEngine.Random.ColorHSV(0,1,1,1,1,1);
+        myColour = UnityEngine.Random.ColorHSV(0,1,1,1,1,1);
 		CmdSetCustomPlayerInfo(myColour);
 		locationSent = false;
-	}
+    }
 
 
 
@@ -210,19 +213,19 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 					{
 						if (GUILayout.Button ("Make Sphere", GUILayout.Width (Screen.width * 0.6f), GUILayout.Height (100))) {
 							Transform camTransform = _exampleARSessionManager.CameraTransform ();
-							Vector3 spherePosition = camTransform.position + (camTransform.forward.normalized * 0.02f); //place sphere 2cm in front of device
+							Vector3 spherePosition = camTransform.position + (camTransform.forward.normalized * 0.1f); //place sphere 2cm in front of device
 							CmdMakeSphere (spherePosition,camTransform.rotation);
 						}
 					}
 				}
 				else if (gameSession.gameState == GameState.GameOver)
 				{
-					if (isServer)
+                    if (isServer)
 					{
 						if (GUILayout.Button("Play Again", GUILayout.Width(Screen.width * 0.3f), GUILayout.Height(100)))
 						{
 							CmdPlayAgain();
-						}
+                        }
 					}
 				}
 			}

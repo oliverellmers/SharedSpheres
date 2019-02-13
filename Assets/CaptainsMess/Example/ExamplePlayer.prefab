@@ -225,6 +225,7 @@ MonoBehaviour:
   locationSynced: 0
   spherePrefab: {fileID: 1374283970619578, guid: f3b3173b792b34a3682c5440a21d3de3,
     type: 2}
+  visionHolder: {fileID: 0}
 --- !u!114 &11472340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,8 +433,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122230}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -778.37897}
-  m_LocalScale: {x: 8.648655, y: 8.648655, z: 8.648655}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22419012}
   - {fileID: 22468874}

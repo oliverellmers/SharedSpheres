@@ -706,6 +706,7 @@ public class CaptainsMessNetworkManager : CaptainsMessLobbyManager
     public void SendStartGameMessage(List<CaptainsMessPlayer> aStartingPlayers)
     {
         listener.OnStartGame(aStartingPlayers);
+
     }
 
     public void SendAbortGameMessage()
