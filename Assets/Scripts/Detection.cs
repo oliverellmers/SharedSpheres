@@ -56,25 +56,9 @@ namespace DetectionApp
 
         private string cachedName;
 
-        private bool isInit = false;
 
-        //[SerializeField]
-        //private GameObject visionHolder;
 
-        private ExampleGameSession gameSession;
-        private bool gameSessionLocated = false;
 
-        private void Awake()
-        {
-            //visionHolder.SetActive(false);
-            gameSession = ExampleGameSession.instance;
-            if(gameSession!=null) {
-                Debug.Log("[Detection]: We have the game instance: " + gameSession);
-                gameSessionLocated = true;
-            }
-        }
-
-        /*
 		private void Awake()
 		{
 			// We need to tell the Vision plugin what kind of requests do we want it to perform.
@@ -90,17 +74,13 @@ namespace DetectionApp
 			_detectionPrimitive = GameObject.Find ("Detection");
 			_detectionPrimitive.SetActive (false);
 		}
-		*/
 
 
-        /*
+
+
         private void OnEnable()
         {
-            //Debug.Log("ÖNEnable called");
-            InitDetection();
 
-            if (!isInit)
-                return;
 
             _vision.OnObjectClassified += Vision_OnObjectClassified;
             //Debug.Log("ÖNEnable: _vision.OnObjectClassified += Vision_OnObjectClassified;");
@@ -109,36 +89,8 @@ namespace DetectionApp
             //UnityARSessionNativeInterface.ARFrameUpdatedEvent += UnityARSessionNativeInterface_ARFrameUpdatedEvent;
             //Debug.Log("ÖNEnable: UnityARSessionNativeInterface.ARFrameUpdatedEvent += UnityARSessionNativeInterface_ARFrameUpdatedEvent;");
         }
-        */
-
-        private void InitVision()
-        {
-            InitDetection();
-
-            if (!isInit)
-                return;
-
-            _vision.OnObjectClassified += Vision_OnObjectClassified;
-        }
 
 
-        public void InitDetection()
-        {
-            if (!isInit)
-            {
-
-                //Awake
-                _vision.SetAndAllocateRequests(VisionRequest.Classification, maxObservations: objCount);
-
-                _markerArray = new GameObject[objCount];
-                _detectionPrimitive = GameObject.Find("Detection");
-                _detectionPrimitive.SetActive(false);
-
-                isInit = true;
-
-                //Debug.Log("ÏnitDetection completed");
-            }
-        }
 
         private void OnDisable()
         {
@@ -185,29 +137,8 @@ namespace DetectionApp
 #if !UNITY_EDITOR && UNITY_IOS
         private void Update()
         {
-            if(!isInit){
 
-                if(!gameSessionLocated){
-                Debug.Log("[Detection]: searching for gameSession...");
-                gameSession = ExampleGameSession.instance;
-                if(gameSession != null){
-                    gameSessionLocated = true;
-                    Debug.Log("[Detection]: gameSession located");
-                }
-                return;
-                }
-
-                   
-                if(gameSession.gameState != GameState.WaitingForRolls)
-                {
-                    Debug.Log("[Detection]: our users are not playing yet");
-                    return;
-                }else{
-                    InitVision();
-                }
-            }
-            
-
+           
              // We only classify a new image if no other vision requests are in progress
             if (_vision.InProgress)
             {

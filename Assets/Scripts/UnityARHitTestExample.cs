@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 namespace UnityEngine.XR.iOS
 {
@@ -28,7 +29,9 @@ namespace UnityEngine.XR.iOS
                     if (prefabToSpawn != null)
                     {
                         Debug.Log("Spawn object related to: " + m_Name);
-                        Instantiate(prefabToSpawn, UnityARMatrixOps.GetPosition(hitResult.worldTransform), UnityARMatrixOps.GetRotation(hitResult.worldTransform));
+                        var instObj = (GameObject)Instantiate(prefabToSpawn, UnityARMatrixOps.GetPosition(hitResult.worldTransform), UnityARMatrixOps.GetRotation(hitResult.worldTransform));
+                        instObj.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+                        NetworkServer.Spawn(instObj);
                     }
 
 
@@ -99,7 +102,7 @@ namespace UnityEngine.XR.iOS
         //My Edit
         public void PerformPlaceMentFromVision(Vector2 screenPos, String name)
         {
-            name = m_Name;
+            m_Name = name;
 
             ARPoint point = new ARPoint
             {
