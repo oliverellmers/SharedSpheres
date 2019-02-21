@@ -29,4 +29,21 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-*.sublime-workspace
+*.sublime-workspac
+
+# Assets
+*.fbx
+*.obj
+*.mtl
+
+*.mp4
+*.mp3
+*.avi
+*.wav
+
+*.png
+*.jpeg
+*.jpg
+*.tif
+*.exr
+*.hdr
